@@ -1,0 +1,264 @@
+<head>
+  <title>literalMe</title>
+</head>
+
+<body>
+  <div class="container">
+    {{> navBar}}
+    {{> mainBody}}
+    {{> footerBar}}
+  </div>
+</body>
+
+<template name="navBar">
+  <header>
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-md-7 py-4">
+            <h4 class="text-white">About</h4>
+            <p class="text-muted">literalMe is your go to place for book reviews and ratings of new and upcoming books as well as the religious texts.</p>
+          </div>
+          <div class="col-sm-4 offset-md-1 py-4">
+            <h4 class="text-white">You can...</h4>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white">Follow on Twitter</a></li>
+              <li><a href="#" class="text-white">Like on Facebook</a></li>
+              <li><a href="#" class="text-white">Email us</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand d-flex align-items-center">         
+          <strong>literalMe</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+</template>
+
+<template name="myWolf">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">literalMe</h1>
+      <p class="lead text-muted">Aye You Made It. Never to late to read a book. Find your passion amongst the stars by choosing from our varieties tailored just for you.</p>
+      <p>
+        <a href="#" class="btn btn-primary my-2">Top Rated Book</a>
+      </p>
+      <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addImageModal">
+  Add Book
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="addImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="{{bookURL}}" class="mountains">
+       <div class="input-group mb-3">
+        <div class="input-group-prepend">
+    <span class="input-group-text" >Title</span>
+        </div>
+  <input type="text" class="form-control" id="Title" placeholder="Name of Book" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+    <span class="input-group-text" >Book URL</span>
+      </div>
+  <input type="text" class="form-control" id="bookURL" aria-describedby="basic-addon3">
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend">
+    <span class="input-group-text">Description</span>
+      </div>
+  <textarea class="form-control" id="Description" aria-label="With textarea"></textarea>
+  </div>
+  <div class="input-group mb-3">
+        <div class="input-group-prepend">
+    <span class="input-group-text" >Author</span>
+        </div>
+  <input type="text" class="form-control" id="Author" placeholder="Name of Author" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary js-close" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary js-save">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+  </section>
+</template>
+
+<template name="mainBody">
+  <main role="main">
+    {{> myWolf}}
+    {{> veiwBook}}
+    {{> editBook}}
+    <div class="album py-5 bg-light">
+      <div class="container ">
+        <div class="row" >
+          {{#each allBooks}}
+          <div class="col-md-4" id={{_id}} >
+            <div class="card mb-4 shadow-sm">
+              <img src={{bookURL}} class="fur" alt="">
+              <div class="card-body">
+                <p class="card-text">{{Title}}</p>
+                <i class="fa fa-trash tColor js-delete"></i>
+                
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary js-veiwBook ">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary js-editMe">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div> 
+          {{/ each}}
+        </div> <!-- /row for all cards -->
+      </div>
+    </div>
+  </main>
+</template> <!-- mainBody -->
+
+<template name = "allBooks">
+  <div class="row">
+   
+  </div>
+</template>
+<template name="veiwBook">
+
+  <div class="row">
+    <div class="col-4">
+      <!-- Modal -->
+      <div class="modal fade bd-example-modal-xl" id="veiwBookModal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="card mb-3 text-left" style="max-width: 1040px; font-size: 1.5rem;">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src="" class="card-img veiwHolder" alt="">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title " id="veiwTitle"></h5>
+                      <h6 class="card-subtitle text-muted" id="veiwAuthor"></h6>
+                      <p class="card-text " id="veiwDescription"></p>
+                      <input id="veiwId" type="hidden">
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- card/div -->
+            </div>
+            <div class="modal-footer">
+             
+            </div>
+          </div>
+        </div>
+        <!-- ====================================== -->
+        <!-- Modal -->
+          <div class="modal fade" id="confirmModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Are you sure you want delete this book?</h5>
+                </div>
+                <div class="modal-footer">
+                  <input id="deleteId" type="hidden">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-primary js-confirm" data-dismiss="modal">Yes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+       <!-- ====================================== -->
+      </div>
+    </div>
+  </div>
+</template> <!-- veiwBook -->
+
+<template name="editBook">
+  <div class="row">
+    <div class="col">
+      <!-- Modal -->
+      <div class="modal fade" id="editBookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Book</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+               <img class="editHolder placeHolder " src="" alt="">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default ">Title</span>
+                </div>
+                <input type="text" class="form-control" id="editbookTitle" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              </div> <!-- title input/div -->
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default ">bookURL</span>
+                </div>
+                <input type="text" class="form-control" id="editbookURL" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              </div> <!-- path input/div -->
+               <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default ">Author</span>
+                </div>
+                <input type="text" class="form-control" id="editbookAuthor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              </div> <!-- author input/div -->
+               <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Description</span>
+                </div>
+                <textarea class="form-control" id="editbookDescription" aria-label="With textarea"></textarea>
+               </div> <!-- description input/div -->
+               <input id="editId" type="hidden">
+              </div> <!-- modal-body -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary js-closeMe" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary js-saveeditMe">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+</template> <!-- editBook -->
+<template name="footerBar">
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Back to top</a>
+      </p>
+      <p>&copy; BooksOutsideInc</p>      
+    </div>
+  </footer>
+</template>
